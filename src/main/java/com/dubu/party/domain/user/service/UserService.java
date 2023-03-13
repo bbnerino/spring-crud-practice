@@ -1,21 +1,40 @@
 package com.dubu.party.domain.user.service;
 
-import com.dubu.party.domain.user.db.entity.User;
-import com.dubu.party.domain.user.request.UserUpdateRequest;
-import com.dubu.party.domain.user.response.UserAllResponse;
-import com.dubu.party.domain.user.response.UserInfoResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import java.io.IOException;
+import com.dubu.party.domain.user.db.entity.User;
+import com.dubu.party.domain.user.db.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public interface UserService {
-    User getUserByEmail(String userEmail);
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
 
-    Long userUpdateWithProfileImg(UserUpdateRequest userInfo, String userEmail) throws IOException;
-    UserInfoResponse getUserInfo(User user);
-    List<User> searchUser(String userNick);
-    Page<User> getUserList(Pageable pageable);
-    List<UserAllResponse> getUserAll();
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+    public User getUserById(Long userId){
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    public void updateUser(Long id, User user) {
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser != null) {
+            existingUser.setUserName(user.getUserName());
+            existingUser.setUserEmail(user.getUserEmail());
+            userRepository.save(existingUser);
+        }
+    }
+
 }
