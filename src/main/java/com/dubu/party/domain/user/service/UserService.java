@@ -16,7 +16,8 @@ public class UserService {
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
-    public User getUserById(Long userId){
+
+    public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
@@ -36,5 +37,6 @@ public class UserService {
             userRepository.save(existingUser);
         }
     }
+
 
 }
