@@ -2,6 +2,14 @@ FROM openjdk:11
 
 RUN mkdir -p /images
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        gradle && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN gradle build
+
 COPY build/libs/dubu-0.0.1-SNAPSHOT.jar app.jar
 
 
