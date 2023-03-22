@@ -1,6 +1,7 @@
 spring:
   datasource:
 #    url: jdbc:mysql://{ec2 public IP}:3306/{DB 이름}
+#    url: jdbc:mysql://localhost:3306/dubu?allowPublicKeyRetrieval=true
     url: jdbc:mysql://13.125.252.182:3306/dubu?useSSL=false&allow
     username: root
     password: root
