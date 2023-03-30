@@ -1,4 +1,4 @@
-# READ ME
+# RE AD ME
 
 # AWS 배포 
 
