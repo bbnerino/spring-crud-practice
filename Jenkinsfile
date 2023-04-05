@@ -21,17 +21,20 @@ pipeline {
         }
         stage('Push to Registry') {
             steps {
-                echo("################")
                 withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
-                    echo '################################'
                     sh 'docker push bbnerino/test2'
                 }
             }
         }
-//         stage('Deploy') {
-//             steps {
-//                 sh 'kubectl apply -f deployment.yaml'
-//             }
-//         }
+        stage('Deploy') {
+            steps {
+                sshagent(['my-ssh-credential']) {
+                    sh '''
+                        ssh user@your_server "docker pull bbnerino/test2"
+                        ssh user@your_server "docker run -d -p 5005:80 --name my-app bbnerino/test2"
+                    '''
+                }
+            }
+        }
     }
 }
