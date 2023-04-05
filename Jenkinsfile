@@ -25,10 +25,10 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps {
+//         stage('Deploy') {
+//             steps {
 //                 sh 'kubectl apply -f deployment.yaml'
-            }
-        }
+//             }
+//         }
     }
 }
