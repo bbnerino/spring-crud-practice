@@ -7,27 +7,27 @@ pipeline {
                 sh './gradlew build'
             }
         }
-        stage('Test') {
-            steps {
-                sh './gradlew test'
-            }
-        }
+//         stage('Test') {
+//             steps {
+//                 sh './gradlew test'
+//             }
+//         }
         stage('Dockerize') {
             steps {
-                sh 'docker build -t my-image .'
-                sh 'docker tag my-image my-registry/my-image'
+                sh 'docker build -t test2 .'
+                sh 'docker tag test2 bbnerino/test2'
             }
         }
         stage('Push to Registry') {
             steps {
-                withDockerRegistry(credentialsId: 'my-docker-registry-credentials', url: 'https://index.docker.io/v1/') {
-                    sh 'docker push my-registry/my-image'
+                withDockerRegistry(credentialsId: 'bbnerino', url: 'https://index.docker.io/v1/') {
+                    sh 'docker push bbnerino/test2'
                 }
             }
         }
         stage('Deploy') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
+//                 sh 'kubectl apply -f deployment.yaml'
             }
         }
     }
