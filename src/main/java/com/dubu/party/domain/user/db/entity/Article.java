@@ -16,6 +16,10 @@ public class Article {
     private String title;
     private String content;
 
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_id",nullable = false)
+//    @JsonIgnoreProperties("articles")
+//    User user;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",nullable = false)
     @JsonIgnoreProperties("articles")
