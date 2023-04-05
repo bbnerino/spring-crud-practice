@@ -20,7 +20,10 @@ pipeline {
         }
         stage('Push to Registry') {
             steps {
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+//                 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+//                     sh 'docker push bbnerino/test2'
+//                 }
+                withDockerRegistry(registry: [url: 'https://index.docker.io/v1/', credentialsId:'docker-hub']){
                     sh 'docker push bbnerino/test2'
                 }
             }
