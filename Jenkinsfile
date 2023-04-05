@@ -1,4 +1,4 @@
-@Library('docker') _
+// @Library('docker') _
 pipeline {
     agent any
     
@@ -22,8 +22,8 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 echo("################")
-                docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
-                    echo("################")
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    echo '################################'
                     sh 'docker push bbnerino/test2'
                 }
             }
