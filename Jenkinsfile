@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "test2",
-        DOCKER_IMAGE = "bbnerino/test2",
-        DOCKER_CREDENTIALS = "docker-hub",
+        IMAGE_NAME = "test2"
+        DOCKER_IMAGE = "bbnerino/test2"
+        DOCKER_CREDENTIALS = "docker-hub"
         DOCKER_REGISTRY = "https://index.docker.io/v1/"
     }
 
