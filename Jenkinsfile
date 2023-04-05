@@ -1,34 +1,33 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Build') {
             steps {
-                sh './gradlew clean build'
+                sh './gradlew build'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Test') {
             steps {
-                script {
-                    def dockerImage = docker.build("myapp:${env.BUILD_ID}")
-                }
+                sh './gradlew test'
             }
         }
-
-        stage('Push to Docker Registry') {
+        stage('Dockerize') {
+            steps {
+                sh 'docker build -t my-image .'
+                sh 'docker tag my-image my-registry/my-image'
+            }
+        }
+        stage('Push to Registry') {
             steps {
                 withDockerRegistry(credentialsId: 'my-docker-registry-credentials', url: 'https://index.docker.io/v1/') {
-                    sh "docker login -u ${dockerCredentialsUsr} -p ${dockerCredentialsPwd}"
-                    sh "docker push myapp:${env.BUILD_ID}"
+                    sh 'docker push my-registry/my-image'
                 }
             }
         }
-
-        stage('Deploy to Kubernetes') {
+        stage('Deploy') {
             steps {
-                // Deploy Docker image to Kubernetes cluster
-                // ...
+                sh 'kubectl apply -f deployment.yaml'
             }
         }
     }
