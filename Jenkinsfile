@@ -19,12 +19,12 @@ pipeline {
             steps {
                 sshagent (credentials: ['SSH-Agent-Key']) {
                 sh """
-                    ssh -o StrictHostKeyChecking=no ${TARGET_HOST} '
+                    ssh -o StrictHostKeyChecking=no ${TARGET_HOST}
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
                         docker pull ${DOCKER_IMAGE}
                         docker stop ${IMAGE_NAME}
                         docker rm ${IMAGE_NAME}
-                        docker run -d --name ${IMAGE_NAME} -p "${LocalPort}":"${ContainerPort}" "${DOCKER_IMAGE}"
+                        docker run -d --name ${IMAGE_NAME} -p ${LocalPort}:${ContainerPort} ${DOCKER_IMAGE}
                     '
                 """
                 }
