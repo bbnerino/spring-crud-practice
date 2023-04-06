@@ -41,3 +41,21 @@ $ docker run -p [포트 번호]:[컨테이너 포트 번호] -d [계정 이름]/
 SHA256:KlgwkGDrpIdRkmFfSxZMs1PP5rQkQR5any5EoyFimC8
 
 sudo docker exec -it --user root [컨테이너명] bash
+---------------
+40000 - jenkins
+40004 - server
+40022 - db
+40100 - ssh
+ssh 인증서 생성 
+jenkins 설치 폴더 
+
+### ssh 접속
+ssh bbnerino@heyhey.i234.me -p40100
+
+Jenkins VM에서 해당 작업을 수행합니다. 이전 단계에서 만든 공개 키를 MasterVM에 복사합니다.
+
+이 단계에서 비밀번호 한번 입력이 필요합니다.
+이 후엔 비밀 키를 사용한 접근 시에 비밀번호 입력이 필요 없습니다.
+`ssh-copy-id -i ~/.ssh/id_rsa.pub -p 40100 bbnerino@heyhey.i234.me`
+
+----
