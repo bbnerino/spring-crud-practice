@@ -20,8 +20,6 @@ pipeline {
                 sshagent (credentials: ['SSH-Agent-Key']) {
                 sh """
                     ssh -o StrictHostKeyChecking=no ${TARGET_HOST} '
-                        pwd
-                        mkdir workspace
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
                         docker pull ${DOCKER_IMAGE}
                         docker stop ${IMAGE_NAME}
