@@ -97,7 +97,7 @@ ssh -i ~/.ssh/id_rsa -p 40100 bbnerino@121.170.208.217
 cat ~/.ssh/id_rsa.pub | ssh -p 40100 bbnerino@121.170.208.217 'cat >> ~/.ssh/authorized_keys'
 
 공개키를 젠킨스에 등록
-ssh-copy-id -i ~/.ssh/id_rsa.pub -p 40000 bbnerino@121.170.208.217
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p 40100 bbnerino@121.170.208.217
 ssh -i ~/.ssh/id_rsa -p 40100 bbnerino@121.170.208.217
 
 ----
