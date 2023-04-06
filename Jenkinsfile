@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['SSH-Agent-Key']) {
                 sh """
-                    ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
+                    ssh -o StrictHostKeyChecking=no ${TARGET_HOST} '
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
                         docker pull ${DOCKER_IMAGE}
                         docker stop ${IMAGE_NAME}
