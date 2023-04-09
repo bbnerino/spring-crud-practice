@@ -22,11 +22,8 @@ pipeline {
         }
         stage('Dockerize') {
             steps {
-                withDockerRegistry([credentialsId: "${DOCKER_CREDENTIALS}", url: "${DOCKER_REGISTRY}"]) {
-                    sh 'echo "FROM openjdk:8-jdk-alpine" > Dockerfile'
-                    sh 'docker build -t ${IMAGE_NAME} .'
-                    sh 'docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}'
-                }
+                sh 'docker build -t ${IMAGE_NAME} .'
+                sh 'docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}'
             }
         }
         stage('Push to Registry') {
