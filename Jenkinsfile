@@ -22,8 +22,10 @@ pipeline {
         }
         stage('Dockerize') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
-                sh "docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}"
+                withDockerRegistry([credentialsId: "${DOCKER_CREDENTIALS}", url: "${DOCKER_REGISTRY}"]) {
+                    sh 'docker build -t ${IMAGE_NAME} .'
+                    sh 'docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}'
+                }
             }
         }
         stage('Push to Registry') {
