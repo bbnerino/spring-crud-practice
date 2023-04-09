@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE = "bbnerino/test2"
         DOCKER_CREDENTIALS = "docker-hub"
         DOCKER_REGISTRY = "https://index.docker.io/v1/"
-        TARGET_HOST = "-p 40100 bbnerino@121.170.208.217"
+        TARGET_HOST = "bbnerino@heyhey.i234.me"
         ContainerPort = "80"
         LocalPort = "40004"
         DOCKER_USER="bbnerino"
