@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh """
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
+                        export PATH=$PATH:/usr/bin
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
                         docker pull ${DOCKER_IMAGE}
                         docker stop ${IMAGE_NAME}
