@@ -17,7 +17,6 @@ pipeline {
     stages {
          stage('Deploy') {
             steps {
-                sshagent(credentials: ['SSH_KEY']) {
                 sh """
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
@@ -27,7 +26,6 @@ pipeline {
                         docker run -d --name ${IMAGE_NAME} -p ${LocalPort}:${ContainerPort} ${DOCKER_IMAGE}
                     '
                 """
-                }
             }
         }
     }
