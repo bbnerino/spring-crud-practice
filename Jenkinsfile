@@ -20,6 +20,7 @@ pipeline {
                 sh """
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
                         export PATH=$PATH:/usr/bin
+                        sudo su
                         sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
                     '
                 """
