@@ -21,6 +21,10 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
                         export PATH=$PATH:/usr/bin
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+                        docker pull ${DOCKER_IMAGE}
+                        docker stop ${IMAGE_NAME}
+                        docker rm ${IMAGE_NAME}
+                        docker run -d --name ${IMAGE_NAME} -p ${LocalPort}:${ContainerPort} ${DOCKER_IMAGE}
                     '
                 """
             }
