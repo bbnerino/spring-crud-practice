@@ -35,7 +35,7 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-                sshagent(credentials: ['SSH-Agent-Key']) {
+                sshagent(credentials: ['SSH_KEY']) {
                 sh """
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
                         docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
