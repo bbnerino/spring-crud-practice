@@ -15,7 +15,25 @@ pipeline {
     }
 
     stages {
-         stage('Deploy') {
+        stage('Build') {
+            steps {
+                sh './gradlew build'
+            }
+        }
+        stage('Dockerize') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} .'
+                sh 'docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}'
+            }
+        }
+        stage('Push to Registry') {
+            steps {
+                withDockerRegistry([credentialsId: "${DOCKER_CREDENTIALS}", url: "${DOCKER_REGISTRY}"]) {
+                    sh 'docker push ${DOCKER_IMAGE}'
+                }
+            }
+        }
+        stage('Deploy') {
             steps {
                 sh """
                     ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${TARGET_HOST} '
