@@ -2,7 +2,7 @@ spring:
   datasource:
 #    url: jdbc:mysql://{ec2 public IP}:3306/{DB 이름}
     url: jdbc:mariadb://heyhey.i234.me:3307/dubu?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
+    username: user
     password: Qwer1234!@
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
