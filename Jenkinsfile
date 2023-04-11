@@ -22,8 +22,10 @@ pipeline {
         }
         stage('Dockerize') {
             steps {
-                sh 'docker build -t ${IMAGE_NAME} .'
-                sh 'docker tag ${IMAGE_NAME} ${DOCKER_IMAGE}'
+                script{
+                    dockerImage = docker.build("${IMAGE_NAME}")
+                    docker.tag("${IMAGE_NAME}", "${DOCKER_IMAGE}")
+                }
             }
         }
         stage('Push to Registry') {

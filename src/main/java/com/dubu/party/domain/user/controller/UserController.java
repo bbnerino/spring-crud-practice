@@ -63,4 +63,5 @@ public class UserController {
         userService.updateUser(id, user);
         return ResponseEntity.ok(userService.getUserById(id));
     }
+
 }
