@@ -100,12 +100,5 @@ cat ~/.ssh/id_rsa.pub | ssh -p 40100 bbnerino@121.170.208.217 'cat >> ~/.ssh/aut
 ssh-copy-id -i ~/.ssh/id_rsa.pub -p 40100 bbnerino@121.170.208.217
 ssh -i ~/.ssh/id_rsa -p 40100 bbnerino@121.170.208.217
 
-----
-
-
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDN6I1k36275hcJOqSSfJfCkJ9a4cwyJ1bV3wRDd8PsKo7WCfXzySaraDGM6vaFuLE
-hnCHc0ObI7YhXXZcf+oYfoWeOQYxLrPGDn2gqUFizV2zr9k3MycH3EVKGCGzbKuHCcwodIEUybj0Wsjli0Q4uyJGx0RNnhIXYhNFA/N
-js2KPnqwIIUOWfuO/NqYwYFsJyf7rAsw4gdS/K4acL54LGahekfhzIIlDrXRY0UL+xB5ZPIMeeGDyYejEtmjbJ8SsLWnb2dUw7I0H5m
-DHR8eCWHFkiateeeO4ex2MPhV49Yx03r4n9Wo9k9GKaoT95xPwO5Rt6S6QWtb1CViWhL6cb7ioKMPqMmsl+R9pK/0iitV5fOjTptZGB
-I3+cFSR5QJZRb254zSEcXeRLhAx0fu+ypYbqur9EqqErnx0i4+U0vxFVgU6eZAy+HWdgbMs8Bx3nHIP81tj6mcTQZlx88td71qo0TPN
-lVplG/E3BG9HwqcQqAIFRM3u1wMR04qx3oks= jenkins@7a2cdb88ea92 
+//  docker 사용 권한 부여 (젠킨스 서버에서) 
+sudo chmod 777 /var/run/docker.sock
