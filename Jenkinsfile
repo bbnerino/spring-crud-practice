@@ -3,13 +3,13 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "test2"
-        DOCKER_IMAGE = "bbnerino/test2"
+        IMAGE_NAME = "test3"
+        DOCKER_IMAGE = "bbnerino/test3"
         DOCKER_CREDENTIALS = "docker-hub"
         DOCKER_REGISTRY = "https://index.docker.io/v1/"
         TARGET_HOST = "bbnerino@heyhey.i234.me"
-        ContainerPort = "80"
-        LocalPort = "40004"
+        ContainerPort = "3333"
+        LocalPort = "3333"
         DOCKER_USER="bbnerino"
         DOCKER_PASS="bb27655100"
     }
