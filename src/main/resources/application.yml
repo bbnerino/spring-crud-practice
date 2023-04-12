@@ -14,4 +14,4 @@ spring:
       hibernate:
         format_sql: true  # SQL pretty print
 server:
-  port : 8080
+  port : 3333
